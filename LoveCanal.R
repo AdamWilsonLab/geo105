@@ -5,6 +5,9 @@ library(ggplot2)
 library(ggmap)
 library(dplyr)
 library(htmlwidgets)
+library(rgdal)
+library(ggiraph)
+
 
 lc=geocode("Love Canal, NY")
 ub=geocode("University at Buffalo North Campus, Amherst, NY")
@@ -17,3 +20,8 @@ m <- leaflet() %>%
 m  # Print the map
 
 saveWidget(m, file="LoveCanal.html")
+
+
+#### Other layers
+km=readOGR("/Users/adamw/GoogleDrive/Work/courses/2017_Spring/GEO105/LoveCanal.kml","LoveCanal")
+ogrInfo("/Users/adamw/GoogleDrive/Work/courses/2017_Spring/GEO105/LoveCanal.kml",layer="test")
