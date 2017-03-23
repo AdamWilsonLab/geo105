@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Love Canal 2.kmz</name>
+	<open>1</open>
+	<Style id="sh_target">
+		<IconStyle>
+			<color>ffffaa55</color>
+			<scale>1.18182</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffffaa55</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_open-diamond">
+		<IconStyle>
+			<color>ff4616f1</color>
+			<scale>1.65455</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/open-diamond.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_target">
+		<IconStyle>
+			<color>ffffaa55</color>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffffaa55</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_target">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_target</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_target</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_open-diamond">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_open-diamond</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_open-diamond</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_open-diamond">
+		<IconStyle>
+			<color>ff4616f1</color>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/open-diamond.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+<Placemark>
+			<name> ![CDATA[Abandoned 99th Street school playground ]]</name>
+			<description><![CDATA[Abandoned 99th Street school playground showing abandoned Love Canal 97th Street homes and Griffon Manor in the background; Aug. 1978<br><br><img src="data/Abandoned_99th_Street_school_playground_showing_abandoned_Love_Canal_97th_Street_homes_and_Griffon_Manor_in_the_background.jpg" width=200px /><br><br>Image source:<a href=http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/6/rec/3>University at Buffalo Archives</a>]]></description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.94842488916314,43.08096704568634,0</coordinates>
+			</Point>
+</Placemark>
+<Placemark>
+			<name>Abandoned Love Canal 99th Street home</name>
+			<description><![CDATA[Abandoned Love Canal 99th Street home with toxic waste visible in the yard; May 1982<br><br><img src="data/Abandoned_Love_Canal_99th_Street_home_with_toxic_waste_visible_in_the_yard.jpg"  width=200px/><br><br>Image source: <a href="http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/232/rec/3">University at Buffalo Archives </a>]]></description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.9475393953476,43.07844265267603,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Abandoned 99th Street Elementary School</name>
+			<description><![CDATA[Abandoned 99th Street Elementary School with large 'Danger, Keep Out' sign on it; July 1979<br><br><img src="data/Abandoned_99th_Street_Elementary_School_with_large_Danger_Keep_Out_sign_on_it.jpg" width=200px/><br><br>Image source:  <a href="http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/398/rec/14">University at Buffalo Archives</a>]]></description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.94814645736059,43.07996736098745,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Abandoned Love Canal home</name>
+			<description><![CDATA[Abandoned Love Canal home with discarded household items and sign in front reading 'House for sale cheap'; c. 1979<br><br><img src="data/Abandoned_Love_Canal_home_with_discarded_household_items__and_sign_in_front_reading_House_for_sale_cheap.jpg" width=200px/><br><br>Image source:  <a href='http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/100/rec/27'> University at Buffalo Archives </a> ]]>
+			</description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.9503157563903,43.08304891689575,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Children playing in backyard</name>
+			<description><![CDATA[Children playing in backyard adjacent to rising toxic waste (Note background, behind fence) c. 1978<br><br><img src="data/Children_playing_in_backyard_adjacent_to_rising_toxic_waste.jpg" width=200px /><br><br>Image source:  <a href="http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/548/rec/1">University at Buffalo Archives </a>]]></description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.94885113179147,43.08198949653885,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Aerial view of abandoned homes</name>
+			<description><![CDATA[Aerial view of abandoned homes adjacent Love Canal site showing toxic waste rising to surface of the ground; c. 1980<br><br><img src="data/Aerial_view_of_abandoned_homes_adjacent_Love_Canal_site_showing_toxic_waste_rising_to_surface_of_the_ground.jpg" width=200px/><br><br>Image source:  <a href=http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/129/rec/1">University at Buffalo Archives</a>]]></description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.94932902513551,43.08382712787073,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Barrels containing toxic waste</name>
+			<description><![CDATA[Barrels containing toxic waste that have risen to the surface of the ground behind 97th Street Love Canal houses; Aug. 1978<br><br><img src="data/Barrels_containing_toxic_waste_that_have_risen_to_the_surface_of_the_ground_behind_97th_Street_Love_Canal_houses.jpg" width=200px/><br><br>Image source:  <a href="http://digital.lib.buffalo.edu/cdm/singleitem/collection/LIB-003/id/17/rec/1">University at Buffalo Archives</a>]]></description>
+			<styleUrl>#msn_open-diamond</styleUrl>
+			<Point>
+				<coordinates>-78.94971163723926,43.07767418367531,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Love Canal and 99th St Elementary School</name>
+			<description><![CDATA[Abandoned 99th Street school]]></description>
+			<styleUrl>#msn_target</styleUrl>
+			<Point>
+				<coordinates>-78.9488221617939,43.08056601788215,0</coordinates>
+			</Point>
+		</Placemark>
+</Document>
+</kml>
