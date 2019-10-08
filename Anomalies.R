@@ -5,16 +5,16 @@ library(ggplot2)
 library(ggpmisc)
 library(zoo)
 
+if(F){
 stations=ghcnd_stations()
-
-d=as.Date("2016-08-01")
-
+d=as.Date("2018-01-01")
 stations%>%filter(
   grepl("BUFFALO",name),
   grepl("NY",state),
-  last_year==2016,
+  last_year>=2018,
   first_year<2000,
   element=="TMIN")
+}
 
 data=meteo_tidy_ghcnd("USW00014733",var=c("TMIN","TMAX"),date_min = as.Date("1940-01-01"))
 
@@ -41,7 +41,7 @@ data_daya=left_join(data,data_day,by="doy")%>%
   mutate(anom=tmin-tmin_mean,
          col=anom>0)
 
-data_daya%>%filter(year>=2016)%>%
+data_daya%>%filter(year>=2017)%>%
   ggplot(aes(y=tmin,x=date))+
   geom_linerange(aes(ymax=tmin,ymin=tmin_mean,col=col))+
   geom_line(aes(y=tmin_mean))
@@ -75,12 +75,12 @@ data_year=data%>%
 
 ## Write csv for import to google sheets
 data_daya%>%
-  filter(year==2016&month==12)%>%
+  filter(year==2017&month==12)%>%
   dplyr::transmute(date,tmin,tmin_mean=round(tmin_mean,1))%>%
   write.csv(file="output/anom_daily.csv",row.names=F)
 
 data_montha%>%
-  filter(year==2016)%>%
+  filter(year==2017)%>%
   dplyr::transmute(year=year,month=month,date=date,tmin=round(tmin_ymonmean,1),tmin_mean=round(tmin_monmean,1))%>%
   write.csv(file="output/anom_monthly.csv",row.names=F)
 
