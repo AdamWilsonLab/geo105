@@ -39,27 +39,45 @@ d=npn_download_magnitude_phenometrics(
   mutate_if(is_numeric,function(x)ifelse(x==-9999,NA,x))
 
 
-library(tidyverse)
-library(rnpn)
+##############
+############## Individual Trees
+
 npn_groups()%>%filter(grepl("Buffalo",network_name))
-npn_download_status_data("Testing",
+
+d=npn_download_status_data("Testing",
                            years=c('2019'),
                            network_ids=c(891))
+d_filtered=d%>%
+  rename("a"="intensity_value") %>% 
+  mutate(
+    date=as.Date(observation_date),
+    intensity=case_when(
+        a == "Less than 5%" ~ 2.5,
+        a == "Less than 25%" ~ 20,
+        a == "5-24%" ~ 14.5,
+        a == "25-49%" ~ 37,
+        a == "50-74%" ~ 62,
+        a == "75-94%" ~ 84.5,
+        a == "95% or more"  ~ 97.5,
+        a == "Less than 3"  ~ 2,  
+        a == "3 to 10" ~ 6.5,
+        a == "11 to 100" ~ 50,
+        a == "101 to 1,000" ~ 500,
+        a == "1,001 to 10,000" ~ 5000,
+        a == "Little" ~ 5,
+        a == "Some" ~ 3,  
+        TRUE ~ as.numeric(NA)
+      ))%>%
+filter(phenophase_description%in%c("Leaves","Colored leaves"))
+    
+unique(d$phenophase_description)
 
-
-ggplot(d,aes(x=as.Date(start_date),
-             y=proportion_individuals_with_yes_record))+
+d_filtered %>% 
+  ggplot(aes(x=date,
+             y=intensity,
+             group=phenophase_description,
+             col=phenophase_description))+
          geom_point()+
-         facet_grid(phenophase_description~common_name)
-
-
-df$date <- as.Date(df$date)
-
-
-
-
-library('ggplot2')
-ggplot(df, aes(date, count)) +
-  geom_line() +
-  theme_grey(base_size = 20) +
-  facet_grid(.id ~ .)
+         facet_wrap(~common_name)+
+  ylim(0,100)+
+  geom_smooth(span=3)
