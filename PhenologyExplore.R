@@ -22,14 +22,6 @@ data_ind=npn_download_individual_phenometrics(request_source = "Adam",
                                               years=c('2019'),
                                               network_ids = gid)
 
-d=npn_download_site_phenometrics(
-  request_source="Adam",
-  years=c('2019'),
-  network_ids = gid,
-  additional_fields="Plant_Nickname" )%>%
-  mutate_if(is_numeric,function(x)ifelse(x==-9999,NA,x))
-
-
 d=npn_download_magnitude_phenometrics(
   request_source="Adam",
   years=c('2019'),
@@ -46,7 +38,11 @@ npn_groups()%>%filter(grepl("Buffalo",network_name))
 
 d=npn_download_status_data("Testing",
                            years=c('2019'),
-                           network_ids=c(891))
+                           additional_fields=list("Plant_Nickname","Observer_ID"), 
+                           network_ids=c(891)) %>% 
+  as.tbl() %>% 
+  mutate(tag=as.numeric(substr(plant_nickname,1,3)))
+
 d_filtered=d%>%
   rename("a"="intensity_value") %>% 
   mutate(
@@ -81,3 +77,41 @@ d_filtered %>%
          facet_wrap(~common_name)+
   ylim(0,100)+
   geom_smooth(span=3)
+
+
+### Site level analysis
+npn_download_individual_phenometrics(
+  request_source="Adam",
+  years=c('2019'),
+  network_ids = gid,
+  additional_fields="Plant_Nickname" )%>%
+  mutate_if(is_numeric,function(x)ifelse(x==-9999,NA,x))
+
+
+d_site=npn_download_site_phenometrics(
+  request_source="Adam",
+  years=c('2019'),
+  network_ids = gid,
+  additional_fields="Plant_Nickname" )%>%
+  mutate_if(is_numeric,function(x)ifelse(x==-9999,NA,x))
+
+
+d_sugarmaple=npn_download_magnitude_phenometrics(
+  request_source="Adam",
+  species_ids = "61",
+  phenophase_ids = "483",
+  years=c(2013:2019),
+  period_frequency = 7,
+  climate_data = T,
+  additional_fields="Plant_Nickname" )%>%
+  mutate_if(is_numeric,function(x)ifelse(x==-9999,NA,x))
+
+ggplot(d_sugarmaple,aes(x=as.Date(start_date),y=proportion_yes_records))+
+  geom_point()+
+  geom_smooth(span=.1,n=1000)+
+  xlab("Date")+
+  ylab("Proportion of 'yes' observations for Leaves")+
+  ylim(0,1)+
+  ggtitle("Seasonal Leaf Cover Variability in Sugar Maple",subtitle = "Data from the National Phenology Network")
+  
+
