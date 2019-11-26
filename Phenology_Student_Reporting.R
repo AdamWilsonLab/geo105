@@ -5,6 +5,8 @@ library(lubridate)
 
 classpath="~/Documents/Work/courses/201909/GEO105_Fall2019/Labs/03_Phenology"
 
+semester_start=as.Date("2019-8-26")
+
 groups=read_csv("~/Documents/Work/courses/201909/GEO105_Fall2019/Labs/03_Phenology/201909_105_groups/20191125120520_2199_19957_COMB_groupmembers.csv") %>% 
   mutate(ubit=`User Name`,group=sub("Section_gc_","",`Group Code`),
          first_name=`First Name`,last_name=`Last Name`,student_id=`Student Id`) %>% 
@@ -30,7 +32,7 @@ raw_data=npn_download_status_data("Adam Wilson",
 d=raw_data%>% 
   mutate(tag=as.numeric(substr(plant_nickname,1,3)),
          date=as.Date(observation_date),
-         week=week(date)) %>% 
+         week=week(date)-week(semester_start)) %>% 
   left_join(users,by=c("observedby_person_id"="Observer_ID")) %>% 
   filter(!ubit%in%c("adammichaelwilson@gmail.com","davidnkarp@gmail.com","hstokes"))
 
@@ -66,16 +68,18 @@ write_csv(d_summary,file.path(classpath,"Phenology_Student_Summary.csv"))
 
 ## observation plot
 d%>%
-  filter(phenophase_description=="Leaves") %>% 
+  filter(phenophase_description=="Leaves",
+         between(week,1,14)) %>% 
   group_by(group,ubit, week)%>%
   summarize(total_obs=n()) %>% 
   left_join(select(ungroup(d_obs),ubit,percent),by="ubit") %>% 
-  ggplot(aes(x=week,y=reorder(ubit,percent),fill=total_obs)) +
+#  ggplot(aes(x=week,y=reorder(ubit,percent),fill=total_obs)) +
+  ggplot(aes(x=as.factor(week),y=ubit,fill=total_obs)) +
   facet_wrap(~group,scales="free_y")+
   geom_tile()+
   scale_fill_viridis_c()+
-  xlim(35,47)+
-  ylab("UBit Name")
+  ylab("UBit Name")+
+  xlab("Week of the semester")
 
 
 # Total observations
