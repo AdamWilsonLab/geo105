@@ -6,8 +6,8 @@ npn_species_id(ids = 3)
 # get buffalo id
 gid=npn_groups()%>%
   filter(grepl("Buffalo",network_name))%>%
-  select(network_id)%>%
-  as.numeric()
+  select(network_id)
+gid
 
 #UB_station=stations[grep(".*Elicott Complex at UB North Campus*",stations$station_name),]
 #stid=UB_station$station_id
@@ -19,12 +19,13 @@ gid=npn_groups()%>%
 #length(d)
 
 data_ind=npn_download_individual_phenometrics(request_source = "Adam",
-                                              years=c('2019'),
-                                              network_ids = gid)
+                                              years=c('2020'),
+                                              network_ids = 1047)#gid)
+
 
 d=npn_download_magnitude_phenometrics(
   request_source="Adam",
-  years=c('2019'),
+  years=c('2020'),
   network_ids = gid,
   period_frequency = 1,
   additional_fields="Plant_Nickname" )%>%
@@ -37,9 +38,9 @@ d=npn_download_magnitude_phenometrics(
 npn_groups()%>%filter(grepl("Buffalo",network_name))
 
 d=npn_download_status_data("Testing",
-                           years=c('2019'),
+                           years=c('2020'),
                            additional_fields=list("Plant_Nickname","Observer_ID"), 
-                           network_ids=c(891)) %>% 
+                           network_ids=gid) %>% 
   as.tbl() %>% 
   mutate(tag=as.numeric(substr(plant_nickname,1,3)))
 

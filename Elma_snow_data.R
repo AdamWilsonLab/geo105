@@ -76,8 +76,9 @@ data_winter
 
   
 data_winter  
-
-ggplot(data_2,aes(x=fyear))+
+data_2 %>% 
+  filter(winter>2009) %>% 
+  ggplot(aes(x=fyear))+
   facet_wrap(~winter,ncol=1)+
   xlim(ymd(c("20171101","20180501")))+
   geom_rect(aes(xmin=ymd("20170105"),
